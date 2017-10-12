@@ -14,6 +14,10 @@ import javafx.scene.layout.StackPane;
 
 
 public class Controller {
+    @FXML private Label b_lbl;
+    @FXML private Label a_lbl;
+    @FXML private CheckBox rchbx;
+    @FXML private CheckBox norm_cbx;
     @FXML private Label label2;
     @FXML private Label label;
     @FXML private ToggleGroup calculate_variance;
@@ -140,12 +144,41 @@ public class Controller {
         });
 
 
+        rchbx.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if(rchbx.isSelected()){
+                    norm_cbx.setSelected(false);
+                    a_lbl.setText("A: ");
+                    b_lbl.setText("B: ");
+                }
+            }
+        });
+
+        norm_cbx.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if(norm_cbx.isSelected()) {
+                    rchbx.setSelected(false);
+                    a_lbl.setText("Математическое ожидание: ");
+                    b_lbl.setText("Дисперсия: ");
+                }
+            }
+        });
     }
 
     @FXML
     private void onCalculate(){
         if(math_expectation_variance_rbtn.isSelected()){
-            Calculator calculator = new Calculator();
+
+            ICalculator calculator;
+            if(rchbx.isSelected()){
+                calculator = new RCalculator();
+            } else if(norm_cbx.isSelected()){
+                calculator = new NormCalculator();
+            } else {
+                return;
+            }
             Double m = Double.parseDouble(math_expectation_edit.getText());
             Double d = Double.parseDouble(variance_edit.getText());
             calculator.calculate(m,d);

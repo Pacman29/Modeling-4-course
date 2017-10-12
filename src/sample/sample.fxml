@@ -4,6 +4,7 @@
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.SplitPane?>
@@ -16,7 +17,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<SplitPane dividerPositions="0.5" orientation="VERTICAL" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<SplitPane dividerPositions="0.5" orientation="VERTICAL" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <items>
       <SplitPane dividerPositions="0.5">
          <items>
@@ -84,6 +85,16 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </VBox.margin>
                         </RadioButton>
+                        <CheckBox fx:id="norm_cbx" mnemonicParsing="false" selected="true" text="Нормальное распределение">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </CheckBox>
+                        <CheckBox fx:id="rchbx" mnemonicParsing="false" text="Равномерное распределение">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </CheckBox>
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -102,7 +113,7 @@
                      <children>
                         <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" GridPane.hgrow="NEVER">
                            <children>
-                              <Label text="Математическое ожидание: " textAlignment="JUSTIFY">
+                              <Label fx:id="a_lbl" text="Математическое ожидание: " textAlignment="JUSTIFY">
                                  <HBox.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </HBox.margin>
@@ -114,7 +125,7 @@
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" GridPane.hgrow="NEVER" GridPane.rowIndex="1">
                            <children>
-                              <Label text="Дисперсия: ">
+                              <Label fx:id="b_lbl" text="Дисперсия: ">
                                  <HBox.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </HBox.margin>
