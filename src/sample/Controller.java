@@ -8,9 +8,9 @@ import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
-import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 
 
 public class Controller {
@@ -159,8 +159,24 @@ public class Controller {
             series_density.setData(calculator.getDistribution_density_series());
             series.setData(calculator.getDistribution_function_series());
 
+
             distribution_density_chart.getData().add(series_density);
             distribution_function_chart.getData().add(series);
+
+            for (Object s : distribution_function_chart.getData()) {
+                for (Object data :((XYChart.Series) s).getData()) {
+                    StackPane stackPane = (StackPane) ((XYChart.Data)data).getNode();
+                    stackPane.setVisible(false);
+                }
+            }
+
+            for (Object s : distribution_density_chart.getData()) {
+                for (Object data :((XYChart.Series) s).getData()) {
+                    StackPane stackPane = (StackPane) ((XYChart.Data)data).getNode();
+                    stackPane.setVisible(false);
+                }
+            }
+
             return;
         }
         if(series_rbtn.isSelected()){
