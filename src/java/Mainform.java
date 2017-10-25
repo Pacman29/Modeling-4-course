@@ -43,7 +43,7 @@ public class Mainform{
 
                 resultModel.setColumnCount(state_count);
                 if(state_count == 1)
-                    resultModel.setRowCount(1);
+                    resultModel.setRowCount(2);
             }
         });
         delState_btn.addActionListener(new ActionListener() {
@@ -57,6 +57,7 @@ public class Mainform{
                 stateModel.setRowCount(state_count);
 
                 resultModel.setColumnCount(state_count);
+
                 if(state_count == 0)
                     resultModel.setRowCount(0);
 
@@ -78,6 +79,13 @@ public class Mainform{
                     r[i] = 0.;
                 }
 
+                double[] lSum = new double[state_count];
+                for(int i = 0; i < state_count; ++i){
+                    for(int j = 0; j < state_count; ++j){
+                        lSum[i] += new Double(stateModel.getValueAt(j,i).toString());
+                    }
+                }
+
                 for(int i = 0; i<state_count; ++i)
                     states[0][i] = 1;
 
@@ -86,8 +94,11 @@ public class Mainform{
                 GaussianSolver gaussianSolver = new GaussianSolver(Matrix.from2DArray(states));
                 Vector results = gaussianSolver.solve(Vector.fromArray(r));
 
-                for (int i = 0; i<state_count; ++i)
+                for (int i = 0; i<state_count; ++i){
                     resultModel.setValueAt(results.get(i),0,i);
+                    resultModel.setValueAt(results.get(i)/lSum[i],1,i);
+                }
+
             }
         });
     }
