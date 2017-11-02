@@ -8,7 +8,7 @@ public class AlgorithmicRandom implements IRandom {
     }
 
     public AlgorithmicRandom(){
-        this.seed = 0;
+        this.seed = (int) (System.currentTimeMillis() % 1000);
     }
 
     public boolean setRange(int a, int b){

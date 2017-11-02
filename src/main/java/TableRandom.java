@@ -71,7 +71,7 @@ public class TableRandom implements IRandom {
     }
 
     public TableRandom(int seed) {
-        this.seed = seed;
+        this.seed = (int) (System.currentTimeMillis() % 1000);
         initArray();
         setBitNumber();
     }
